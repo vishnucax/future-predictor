@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Predictor Lab | 100% Fake Accuracy</title>
+    <meta name="description"
+        content="Predicting your future with 100% fake accuracy. A hacker-themed interactive website for fun and viral sharing.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+
+    <header class="hero">
+        <h1 class="glitch" data-text="FUTURE PREDICTOR LAB">FUTURE PREDICTOR LAB</h1>
+        <p class="tagline">Predicting Your Future With <span class="highlight">100% Fake Accuracy</span></p>
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">system@future-predictor:~</span>
+        </div>
+        <!-- Developer HackTab -->
+        <div class="hack-tab" onclick="window.open('https://vishnucax.github.io/', '_blank')">
+            <span class="tab-label">DEVELOPER_ID:</span>
+            <span class="tab-value">VISHNU_K</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Tools Section -->
+        <section id="tools" class="grid">
+            <!-- Next Day Predictor -->
+            <div class="card" id="nextDayCard">
+                <h3>Next Day Predictor</h3>
+                <p class="tool-desc">How was your day today?</p>
+                <div class="input-group">
+                    <select id="dayStatus">
+                        <option value="amazing">Amazing Day</option>
+                        <option value="normal" selected>Normal Day</option>
+                        <option value="lazy">Lazy Day</option>
+                        <option value="studied">Studied a Lot</option>
+                        <option value="procrastinated">Procrastinated All Day</option>
+                        <option value="survived">Survived Somehow</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="predictNextDay()">Predict My Tomorrow</button>
+            </div>
+
+            <!-- Exam Result Predictor -->
+            <div class="card" id="examCard">
+                <h3>Exam Result Predictor</h3>
+                <div class="input-group">
+                    <label>Study Hours</label>
+                    <input type="number" id="studyHours" placeholder="0-24" min="0" max="24">
+                </div>
+                <div class="input-group">
+                    <label>Coffee Cups</label>
+                    <input type="number" id="coffeeCups" placeholder="0-99" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Panic Level (%)</label>
+                    <input type="range" id="panicLevel" min="0" max="100" value="50">
+                    <span id="panicValue">50%</span>
+                </div>
+                <button class="btn btn-primary" onclick="predictExam()">Predict Result</button>
+            </div>
+
+            <!-- Excuse Generator -->
+            <div class="card" id="excuseCard">
+                <h3>Excuse Generator</h3>
+                <p class="tool-desc">Need a reason to bail?</p>
+                <div id="excuseDisplay" class="display-box">Click to generate...</div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generateExcuse()">Generate Excuse</button>
+                    <button class="btn btn-secondary" onclick="copyExcuse()">Copy</button>
+                </div>
+            </div>
+
+            <!-- Laziness Level Detector -->
+            <div class="card" id="lazinessCard">
+                <h3>Laziness Detector</h3>
+                <div class="input-group">
+                    <label>Sleep Hours</label>
+                    <input type="number" id="sleepHours" value="8">
+                </div>
+                <div class="input-group">
+                    <label>Work Hours</label>
+                    <input type="number" id="workHours" value="2">
+                </div>
+                <div class="input-group">
+                    <label>Netflix Hours</label>
+                    <input type="number" id="netflixHours" value="4">
+                </div>
+                <button class="btn btn-primary" onclick="detectLaziness()">Scan Laziness</button>
+            </div>
+
+            <!-- AI Personality Scanner -->
+            <div class="card" id="aiScannerCard">
+                <h3>AI Personality Scanner</h3>
+                <p class="tool-desc">Let our AI judge you.</p>
+                <button class="btn btn-primary" onclick="scanPersonality()">Scan My Personality</button>
+            </div>
+        </section>
+
+        <!-- Final Result Section (Initially Hidden) -->
+        <section id="results" class="results-section hidden">
+            <div class="card result-card">
+                <h2 class="neon-text">EXTRACTION COMPLETE</h2>
+                <div id="resultOutput" class="result-text"></div>
+                <div class="share-group">
+                    <button class="btn btn-whatsapp" onclick="shareResult('whatsapp')">Share to WhatsApp</button>
+                    <button class="btn btn-twitter" onclick="shareResult('twitter')">Share to X</button>
+                </div>
+                <button class="btn btn-secondary" onclick="resetUI()">Try Another Tool</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Hacking Overlay -->
+    <div id="hackingOverlay" class="overlay hidden">
+        <div class="terminal-window">
+            <div class="terminal-content" id="terminalLogs">
+                <!-- Logs will be injected here -->
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="hackingProgressBar"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Random Funny Popups Container -->
+    <div id="popups" class="popup-container"></div>
+
+    <footer>
+        <p class="disclaimer">Disclaimer: Predictions are 99% fake but emotionally accurate.</p>
+        <p>Developed by <a href="https://vishnucax.github.io/" target="_blank" class="dev-link">Vishnu K</a></p>
+        <div class="social-links">
+            <a href="#" target="_blank" class="social-link">LinkedIn</a>
+            <a href="#" target="_blank" class="social-link">Instagram</a>
+            <a href="#" target="_blank" class="social-link">GitHub</a>
+        </div>
+        <p class="footer-links">
+            <a href="javascript:void(0)" onclick="togglePrivacyModal(true)">Privacy Policy</a>
+        </p>
+        <p>&copy; 2026 Future Predictor Lab. No NASA servers were actually harmed.</p>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="overlay hidden">
+        <div class="terminal-window modal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">privacy_policy.sh</span>
+                <span class="close-btn" onclick="togglePrivacyModal(false)">[X]</span>
+            </div>
+            <div class="terminal-content">
+                <p class="terminal-line">> cat privacy_policy.txt</p>
+                <p class="terminal-line">--- PRIVACY POLICY ---</p>
+                <p class="terminal-line">1. Data Collection: We don't collect anything. This is a joke site.</p>
+                <p class="terminal-line">2. Cookies: Only the ones you eat while procrastinating.</p>
+                <p class="terminal-line">3. Accuracy: 0%. Your future is your own.</p>
+                <p class="terminal-line">4. Third Parties: NASA has no idea we exist.</p>
+                <p class="terminal-line">----------------------</p>
+                <p class="terminal-line">END OF FILE.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="togglePrivacyModal(false)">CLOSE_TERMINAL</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
