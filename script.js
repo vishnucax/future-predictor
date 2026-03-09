@@ -164,7 +164,7 @@ function togglePrivacyModal(show) {
 }
 
 function shareResult(platform) {
-    const text = `My future prediction: ${document.getElementById('resultOutput').innerText} \nCheck yours at: Future Predictor Lab!`;
+    const text = `My future prediction: ${document.getElementById('resultOutput').innerText} \nCheck yours at: https://vishnucax.github.io/future-predictor/`;
     const url = encodeURIComponent(window.location.href);
 
     if (platform === 'whatsapp') {
