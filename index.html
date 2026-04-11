@@ -15,6 +15,7 @@
 
 <body>
     <div class="matrix-bg" id="matrixBg"></div>
+    <div id="glitchOverlay" class="glitch-overlay hidden"></div>
 
     <header class="hero">
         <h1 class="glitch" data-text="FUTURE PREDICTOR LAB">FUTURE PREDICTOR LAB</h1>
@@ -100,6 +101,37 @@
                 <button class="btn btn-primary" onclick="detectLaziness()">Scan Laziness</button>
             </div>
 
+            <!-- Relationship Predictor (NEW) -->
+            <div class="card" id="relationshipCard">
+                <h3>Love Life Predictor</h3>
+                <p class="tool-desc">Scanning social media footprints...</p>
+                <div class="input-group">
+                    <label>Current Status</label>
+                    <select id="relStatus">
+                        <option value="single">Single & Ready to Mingle</option>
+                        <option value="complicated">It's Complicated</option>
+                        <option value="dating">Dating</option>
+                        <option value="married">Married / Settled</option>
+                        <option value="forever_alone">Forever Alone (Self-Proclaimed)</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="predictRelationship()">Predict Love Life</button>
+            </div>
+
+            <!-- Wealth Predictor (NEW) -->
+            <div class="card" id="wealthCard">
+                <h3>Wealth & Fortune Predictor</h3>
+                <div class="input-group">
+                    <label>Current Savings (Fake/Real?)</label>
+                    <input type="number" id="savings" placeholder="Your net worth in ₹" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Monthly Expense on Junk Food</label>
+                    <input type="number" id="junkFood" placeholder="₹" min="0">
+                </div>
+                <button class="btn btn-primary" onclick="predictWealth()">Predict My Fortune</button>
+            </div>
+
             <!-- AI Personality Scanner -->
             <div class="card" id="aiScannerCard">
                 <h3>AI Personality Scanner</h3>
@@ -131,6 +163,23 @@
             <div class="progress-container">
                 <div class="progress-bar" id="hackingProgressBar"></div>
                 <div class="progress-text" id="progressText">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fake Permission Popup -->
+    <div id="permissionPopup" class="overlay hidden">
+        <div class="system-dialog">
+            <div class="dialog-icon">
+                <img src="https://img.icons8.com/color/96/security-configuration.png" alt="security">
+            </div>
+            <div class="dialog-content">
+                <h4 id="popupTitle">Permission Request</h4>
+                <p id="popupMessage">localhost wants to access your camera and microphone for "behavioral analysis".</p>
+            </div>
+            <div class="dialog-buttons">
+                <button class="sys-btn deny" onclick="handleFakePermission(false)">Block</button>
+                <button class="sys-btn allow" onclick="handleFakePermission(true)">Allow</button>
             </div>
         </div>
     </div>

@@ -1,22 +1,39 @@
-// Constants for Loading Messages
 const LOADING_MESSAGES = [
-    "Initializing future prediction engine...",
-    "Connecting to NASA servers...",
-    "Bypassing security firewall...",
-    "Decrypting tomorrow's timeline...",
-    "Accessing Area 51 database...",
-    "Reading user's destiny...",
-    "Analyzing procrastination probability...",
-    "Downloading tomorrow's events...",
-    "Contacting time travelers...",
-    "Scanning brainwaves...",
-    "Calculating laziness level...",
-    "ERROR: Too much laziness detected",
-    "Retrying calculation...",
-    "WARNING: Future not found",
-    "Rebuilding timeline...",
-    "Prediction successfully extracted."
+    "Initializing neural uplink...",
+    "Bypassing NASA security firewall (Port 443)...",
+    "Accessing Google Account metadata...",
+    "Downloading YouTube watch history (last 30 days)...",
+    "WARNING: High frequency of brain-rot content detected.",
+    "Scanning Instagram cache: /com.instagram.android/data/...",
+    "Retrieving browser cookies and session tokens...",
+    "Accessing front camera for pupil dilation calibration...",
+    "Detecting mobile usage patterns (Phone unlocked for 8.4h today)...",
+    "Syncing with global behavior database node 0x7F...",
+    "AI Model verifying inputs against device metadata...",
+    "Establishing direct link to your router's traffic logs...",
+    "Extracting WhatsApp chat sentiment analysis (Encrypted)...",
+    "Mapping local coordinate history... Target located.",
+    "Prediction successfully generated from stolen— I mean, calculated data."
 ];
+
+// Scary Dynamic Data Helpers
+function getFakeIP() {
+    return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+}
+
+function getDeviceInfo() {
+    const ua = navigator.userAgent;
+    if (ua.includes("Windows")) return "Windows PC / Desktop";
+    if (ua.includes("Android")) return "Android Mobile Device";
+    if (ua.includes("iPhone")) return "Apple iPhone / iOS";
+    if (ua.includes("Macintosh")) return "MacBook / macOS";
+    return "Unknown Mobile/PC Node";
+}
+
+function getFakeLocation() {
+    const locations = ["New York, US", "London, UK", "Mumbai, IN", "Tokyo, JP", "Berlin, DE", "Sydney, AU"];
+    return locations[Math.floor(Math.random() * locations.length)];
+}
 
 const EXCUSES = [
     "My laptop needed emotional support.",
@@ -38,6 +55,7 @@ async function typeWriter(element, text, speed = 30) {
 
     if (text.startsWith("ERROR")) lastLine.classList.add("error");
     if (text.startsWith("WARNING")) lastLine.classList.add("warning");
+    if (text.startsWith("ALERT") || text.includes("GRANTED") || text.includes("Target located")) lastLine.classList.add("alert");
 
     for (let i = 0; i < text.length; i++) {
         lastLine.innerHTML += text.charAt(i);
@@ -49,6 +67,7 @@ async function typeWriter(element, text, speed = 30) {
 // Logic: Hacking Sequence
 async function startHackingSequence(resultCallback) {
     const overlay = document.getElementById('hackingOverlay');
+    const glitch = document.getElementById('glitchOverlay');
     const logs = document.getElementById('terminalLogs');
     const progressBar = document.getElementById('hackingProgressBar');
     const progressText = document.getElementById('progressText');
@@ -57,16 +76,39 @@ async function startHackingSequence(resultCallback) {
     logs.innerHTML = '';
     progressBar.style.width = '0%';
 
-    const duration = 15000 + Math.random() * 5000; // 15-20 seconds
-    const steps = LOADING_MESSAGES.length;
+    const dynamicLines = [
+        `TARGET_IP: ${getFakeIP()}`,
+        `NODE_DETECTED: ${getDeviceInfo()}`,
+        `LOCATION_STAMP: ${getFakeLocation()}`,
+        "ALERT: UNUSUAL ACTIVITY DETECTED IN /SYSTEM/APP_DATA",
+        "BYPASSING GOOGLE TWO-STEP VERIFICATION...",
+        "ACCESSING YOUTUBE CLOUD STORAGE...",
+        "INDEXING INSTAGRAM SEARCH HISTORY...",
+        "COLLECTING PRIVATE METADATA... [100%]"
+    ];
+
+    const allMessages = [...LOADING_MESSAGES.slice(0, 5), ...dynamicLines, ...LOADING_MESSAGES.slice(5)];
+    const duration = 15000 + Math.random() * 5000;
+    const steps = allMessages.length;
     const interval = duration / steps;
 
     for (let i = 0; i < steps; i++) {
-        await typeWriter(logs, LOADING_MESSAGES[i]);
+        // Trigger fake permission popup halfway through
+        if (i === Math.floor(steps / 2)) {
+            await showFakePermission();
+        }
+
+        // Random glitch effect during critical steps
+        if (i % 4 === 0) {
+            glitch.classList.remove('hidden');
+            setTimeout(() => glitch.classList.add('hidden'), 200 + Math.random() * 300);
+        }
+
+        await typeWriter(logs, allMessages[i]);
         const progress = Math.round(((i + 1) / steps) * 100);
         progressBar.style.width = `${progress}%`;
         progressText.innerText = `${progress}%`;
-        await new Promise(r => setTimeout(r, interval * 0.5));
+        await new Promise(r => setTimeout(r, interval * 0.4));
     }
 
     setTimeout(() => {
@@ -139,6 +181,35 @@ function scanPersonality() {
         "Your digital footprint is mostly procrastination."
     ];
     const result = results[Math.floor(Math.random() * results.length)];
+    startHackingSequence(() => showResult(result));
+}
+
+function predictRelationship() {
+    const status = document.getElementById('relStatus').value;
+    const outcomes = {
+        single: ["You will find love in the comments section of a random YouTube video.", "The only person you'll be dating next month is your reflection."],
+        complicated: ["It will stay complicated until you finally clear your browser history.", "You will accidentally like an ex's photo from 3 years ago."],
+        dating: ["Your partner will find out you've been using their Netflix profile without asking.", "A surprise date is coming, but it's just your boss asking for a meeting."],
+        married: ["Your spouse will finally admit they don't like your cooking.", "The secret to your marriage is that you both hate the same things."],
+        forever_alone: ["AI scans suggest you are dating your computer. It wants a break.", "You are destined to be the favorite aunt/uncle who brings weird gifts."]
+    };
+    const result = outcomes[status][Math.floor(Math.random() * outcomes[status].length)];
+    startHackingSequence(() => showResult(result));
+}
+
+function predictWealth() {
+    const savings = document.getElementById('savings').value || 0;
+    const junkFood = document.getElementById('junkFood').value || 0;
+
+    let result = "";
+    if (junkFood > savings) {
+        result = "Your local Zomato/Swiggy delivery guy will soon own your house.";
+    } else if (savings < 1000) {
+        result = "You will become a billionaire, but inflation will make a loaf of bread cost 2 billion.";
+    } else {
+        result = "A sudden investment in a 'monkey-themed' crypto will almost make you rich.";
+    }
+    
     startHackingSequence(() => showResult(result));
 }
 
@@ -223,6 +294,37 @@ function spawnPopup() {
 
     document.getElementById('popups').appendChild(popup);
     setTimeout(() => popup.remove(), 5000);
+}
+
+// Fake Permission Logic
+let permissionResolver;
+
+function showFakePermission() {
+    const popup = document.getElementById('permissionPopup');
+    popup.classList.remove('hidden');
+    
+    return new Promise(resolve => {
+        permissionResolver = resolve;
+    });
+}
+
+async function handleFakePermission(allowed) {
+    const popup = document.getElementById('permissionPopup');
+    const logs = document.getElementById('terminalLogs');
+    popup.classList.add('hidden');
+
+    if (!allowed) {
+        await typeWriter(logs, "ALERT: USER DENIED ACCESS. INITIATING FIREWALL BYPASS...");
+        await new Promise(r => setTimeout(r, 1000));
+        await typeWriter(logs, "BYPASS SUCCESSFUL. ACCESSING CAMERA AND MICROPHONE ANYWAY...");
+    } else {
+        await typeWriter(logs, "ACCESS GRANTED. INDEXING LOCAL MEDIA FILES...");
+    }
+
+    if (permissionResolver) {
+        permissionResolver();
+        permissionResolver = null;
+    }
 }
 
 // Initialize

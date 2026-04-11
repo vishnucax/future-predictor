@@ -1,12 +1,14 @@
 :root {
     --bg-color: #050505;
-    --neon-green: #00ff00;
-    --neon-green-dim: #00aa00;
-    --text-color: #00ff00;
-    --card-bg: rgba(0, 40, 0, 0.2);
-    --border-color: #00ff00;
-    --error-red: #ff0000;
-    --warning-yellow: #ffff00;
+    --primary: #00ff41;
+    --primary-dark: #003b00;
+    --secondary: #222;
+    --accent: #0f0;
+    --text: #00ff41;
+    --bg: #000;
+    --error: #ff4141;
+    --warning: #ffb841;
+    --alert: #ff0000;
     --font-main: 'Fira Code', monospace;
 }
 
@@ -22,6 +24,104 @@ body {
     font-family: var(--font-main);
     overflow-x: hidden;
     line-height: 1.6;
+}
+
+/* Glitch Overlay */
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.1);
+    z-index: 9999;
+    pointer-events: none;
+    animation: screen-glitch 0.2s infinite;
+}
+
+@keyframes screen-glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); background: rgba(0, 255, 0, 0.05); }
+    40% { transform: translate(5px, -5px); background: rgba(0, 0, 255, 0.05); }
+    60% { transform: translate(-10px, 0); background: rgba(255, 0, 0, 0.1); }
+    80% { transform: translate(10px, 5px); }
+    100% { transform: translate(0); }
+}
+
+.terminal-line.alert {
+    color: var(--alert);
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: blink 0.5s infinite;
+}
+
+/* System Dialog (Fake Permission) */
+.system-dialog {
+    background: #ffffff;
+    color: #333;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slide-up 0.3s ease-out;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dialog-icon img {
+    width: 64px;
+    margin-bottom: 15px;
+}
+
+.dialog-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.dialog-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.sys-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sys-btn.deny {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.sys-btn.deny:hover {
+    background: #e0e0e0;
+}
+
+.sys-btn.allow {
+    background: #0078d4;
+    color: white;
+}
+
+.sys-btn.allow:hover {
+    background: #005a9e;
+}
+
+@keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .matrix-bg {
