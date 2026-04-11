@@ -10,6 +10,15 @@
     --warning: #ffb841;
     --alert: #ff0000;
     --font-main: 'Fira Code', monospace;
+
+    /* Legacy Mappings for Compatibility */
+    --text-color: #00ff41;
+    --neon-green: #00ff41;
+    --neon-green-dim: rgba(0, 255, 65, 0.2);
+    --border-color: #00ff41;
+    --card-bg: rgba(0, 40, 0, 0.2);
+    --error-red: #ff4141;
+    --warning-yellow: #ffb841;
 }
 
 * {
