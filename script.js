@@ -301,7 +301,17 @@ let permissionResolver;
 
 function showFakePermission() {
     const popup = document.getElementById('permissionPopup');
-    popup.classList.remove('hidden');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Update host for realism
+    const hostLabel = document.getElementById('promptHost');
+    if (hostLabel) {
+        hostLabel.innerText = `${window.location.host || 'localhost:8000'} wants to:`;
+    }
+
+    // Reset and apply device class
+    popup.classList.remove('hidden', 'style-pc', 'style-mobile');
+    popup.classList.add(isMobile ? 'style-mobile' : 'style-pc');
     
     return new Promise(resolve => {
         permissionResolver = resolve;
@@ -312,6 +322,7 @@ async function handleFakePermission(allowed) {
     const popup = document.getElementById('permissionPopup');
     const logs = document.getElementById('terminalLogs');
     popup.classList.add('hidden');
+    popup.classList.remove('style-pc', 'style-mobile');
 
     if (!allowed) {
         await typeWriter(logs, "ALERT: USER DENIED ACCESS. INITIATING FIREWALL BYPASS...");

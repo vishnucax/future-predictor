@@ -4,9 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Future Predictor Lab | 100% Fake Accuracy</title>
+    <title>Future Predictor Lab | Best Prank Website & Hacking Simulation</title>
     <meta name="description"
-        content="Predicting your future with 100% fake accuracy. A hacker-themed interactive website for fun and viral sharing.">
+        content="Predicting your future with 100% fake accuracy. The best prank website for hacking simulations, wealth predictors, and love life detectors. Viral-ready fun!">
+    <meta name="keywords" content="best prank website, prank website, wealth predictor, hacking prank, hacking simulation, how to hack, future predictor, joke website, future teller, 100% fake accuracy, funny website, prank your friends">
+    <meta name="author" content="Vishnu K">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vishnucax.github.io/future-predictor/">
+    <meta property="og:title" content="Future Predictor Lab | Best Prank Website">
+    <meta property="og:description" content="Experience the best hacking simulation and future predictor. 100% fake accuracy, 100% viral fun.">
+    <meta property="og:image" content="https://vishnucax.github.io/future-predictor/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vishnucax.github.io/future-predictor/">
+    <meta property="twitter:title" content="Future Predictor Lab | Best Prank Website">
+    <meta property="twitter:description" content="Experience the best hacking simulation and future predictor. 100% fake accuracy, 100% viral fun.">
+    <meta property="twitter:image" content="https://vishnucax.github.io/future-predictor/og-image.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vishnucax.github.io/future-predictor/">
+
+    <!-- GAO / Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Future Predictor Lab",
+      "operatingSystem": "Web",
+      "applicationCategory": "JokeApplication",
+      "description": "A high-performance interactive prank website that simulates hacking and predicts the future with 100% fake accuracy.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Vishnu K"
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,19 +208,24 @@
         </div>
     </div>
 
-    <!-- Fake Permission Popup -->
     <div id="permissionPopup" class="overlay hidden">
-        <div class="system-dialog">
-            <div class="dialog-icon">
-                <img src="https://img.icons8.com/color/96/security-configuration.png" alt="security">
+        <div class="browser-prompt" id="browserPrompt">
+            <div class="prompt-header">
+                <span id="promptHost">localhost:8000 wants to:</span>
             </div>
-            <div class="dialog-content">
-                <h4 id="popupTitle">Permission Request</h4>
-                <p id="popupMessage">localhost wants to access your camera and microphone for "behavioral analysis".</p>
+            <div class="prompt-body">
+                <div class="permission-item">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#5f6368" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="#5f6368" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                    <span>Use your microphone</span>
+                </div>
+                <div class="permission-item">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#5f6368" d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    <span>Use your camera</span>
+                </div>
             </div>
-            <div class="dialog-buttons">
-                <button class="sys-btn deny" onclick="handleFakePermission(false)">Block</button>
-                <button class="sys-btn allow" onclick="handleFakePermission(true)">Allow</button>
+            <div class="prompt-footer">
+                <button class="prompt-btn block" onclick="handleFakePermission(false)">Block</button>
+                <button class="prompt-btn allow" onclick="handleFakePermission(true)">Allow</button>
             </div>
         </div>
     </div>
